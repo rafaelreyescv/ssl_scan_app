@@ -9,9 +9,9 @@ services:
   # Servicio de la herramienta ssl_scaner
   escaner_ssl:
     # Imagen a utilizar
-    image: ssl_scaner:1.0.0
+    image: rafaelreyescv/ssl_escaner:1.0.0
     # Nombre del contenedor
-    container_name: ssl_scaner
+    container_name: ssl_escaner
     # Puertos usados para publicar el servicio en el host
     ports:
       - 3306:3306
