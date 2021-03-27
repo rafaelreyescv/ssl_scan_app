@@ -1,0 +1,34 @@
+# Autor: Rafael Ricardo Reyes Sandoval
+# Propósito: Despliegue del servicio de ssl_escaner
+
+# Versión que se utiliza para el despliegue
+version: "3.7"
+
+# Servicios a desplegar
+services:
+  # Servicio de la herramienta ssl_scaner
+  escaner_ssl:
+    # Imagen a utilizar
+    image: ssl_scaner:1.0.0
+    # Nombre del contenedor
+    container_name: ssl_scaner
+    # Puertos usados para publicar el servicio en el host
+    ports:
+      - 3306:3306
+    # Variables empleadas para la automatización de creación de parámetros estandars
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD 
+      - MYSQL_USER=$MYSQL_USER 
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD 
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+    # Política de reinicios del servicio
+    restart: always
+    # Volúmenes de datos persistentes donde se almacenan los datos importantes del servicio.
+    volumes:
+      - mysql_ssl_scaner:/var/lib/mysql
+      - ./listas_a_escanear:/mnt/escaner_ssl
+
+# Creación de volúmenes de datos persistentes
+volumes:
+   mysql_ssl_scaner:
+
